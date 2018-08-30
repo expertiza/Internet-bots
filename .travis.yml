@@ -18,10 +18,6 @@ before_install:
   - rvm rubygems current
   - npm install -g bower
   - bower install
-  - wget https://github.com/mozilla/geckodriver/releases/download/v0.18.0/geckodriver-v0.18.0-linux64.tar.gz
-  - tar -xf geckodriver-v0.18.0-linux64.tar.gz
-  - sudo mv geckodriver /usr/local/bin/geckodriver
-  - geckodriver --version
   - redis-server --version
   - redis-server &
 before_script:
@@ -35,10 +31,6 @@ before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
-  # Using xvfb to Run Tests That Require a GUI (https://docs.travis-ci.com/user/gui-and-headless-browsers/)
-  - "export DISPLAY=:99.0"
-  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1920x1080x16"
-  - sleep 3 # give xvfb some time to start
   - bundle exec danger
 script:
   - "export DISPLAY=:99.0 && RUBYOPT=W0 bundle exec rspec spec/models/user_spec.rb:10 2> /dev/null"
@@ -48,10 +40,3 @@ services:
   - mysql
 addons:
   firefox: latest
-notifications:
-  email:
-    recipients:
-      - expertiza-support@lists.ncsu.edu
-    on_success: change
-    on_failure: change
-  slack: expertiza-support:DS8GtpbAybxHVwwYNRvvbb39
