@@ -4,7 +4,7 @@ env:
 language: ruby
 dist: trusty
 cache:
-  bundler: false
+  bundler: true
 rvm:
   - 2.2.7
 branches:
