@@ -16,8 +16,6 @@ before_install:
   - rvm list
   - unset RAILS_ENV
   - rvm rubygems current
-  - npm install -g bower
-  - bower install
   - redis-server --version
   - redis-server &
 before_script:
