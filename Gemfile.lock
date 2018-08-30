@@ -1,6 +1,6 @@
 GIT
-  remote: https://github.com/Winbobob/danger.git
-  revision: 9b90044321eced0805b5e9d4fa440d9df2518c19
+  remote: git://github.com/Winbobob/danger.git
+  revision: 8a1521405819f45908f450227e306781ab2db7e4
   specs:
     danger (5.6.4)
       claide (~> 1.0)
@@ -324,7 +324,7 @@ GEM
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (>= 1.2, < 3)
-    octokit (4.10.0)
+    octokit (4.11.0)
       sawyer (~> 0.8.0, >= 0.5.3)
     omniauth (1.8.1)
       hashie (>= 3.4.6, < 3.6.0)
