@@ -4,7 +4,7 @@ env:
 language: ruby
 dist: trusty
 cache:
-  bundler: true
+  bundler: false
 rvm:
   - 2.2.7
 branches:
@@ -16,25 +16,9 @@ before_install:
   - rvm list
   - unset RAILS_ENV
   - rvm rubygems current
-  - redis-server --version
-  - redis-server &
 before_script:
-  - mysql -u root < db/grant_expertiza.sql
   - cp config/database.yml.example config/database.yml
   - cp config/secrets.yml.example config/secrets.yml
-  - export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64
   - bundle install
-  - bundle exec rake db:setup
-  # Test coverage offered by Code Climate
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
-  - bundle exec danger
 script:
-  - "export DISPLAY=:99.0 && RUBYOPT=W0 bundle exec rspec spec/models/user_spec.rb:10 2> /dev/null"
-after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-services:
-  - mysql
-addons:
-  firefox: latest
+  - bundle exec danger
