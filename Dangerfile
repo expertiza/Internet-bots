@@ -1,3 +1,28 @@
+# --------------------------------------------------------------------------------------------------------------------
+# Has any changes happened inside the actual library code?
+# --------------------------------------------------------------------------------------------------------------------
+has_app_changes = !git.modified_files.grep(/app/).empty?
+has_spec_changes = !git.modified_files.grep(/spec/).empty?
+
+# ------------------------------------------------------------------------------
+# You've made changes to lib, but didn't write any tests?
+# ------------------------------------------------------------------------------
+if has_app_changes && !has_spec_changes
+  if Dir.exist?(spec)
+    warn(
+      markdown <<=MESSAGE
+        There are code changes, but no corresponding tests.
+        Please include tests if this PR introduces any modifications in behavior.
+      MESSAGE
+      , :sticky => true)
+  else
+    markdown <<-MARKDOWN
+      Thanks for the PR! This project lacks automated tests, which makes reviewing and approving PRs somewhat difficult.
+      Please make sure that your contribution has not broken backwards compatibility or introduced any risky changes.
+    MARKDOWN
+  end
+end
+
 # Sometimes it's a README fix, or something like that - which isn't relevant for
 # including in a project's CHANGELOG for example
 declared_trivial = github.pr_title.include? "#trivial"
@@ -13,3 +38,5 @@ fail("fdescribe left in tests") if `grep -r fdescribe specs/ `.length > 1
 fail("fit left in tests") if `grep -r fit specs/ `.length > 1
 
 message(":tada:") if github.pr_author
+
+
