@@ -1,6 +1,6 @@
-# --------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Has any changes happened inside the actual library code?
-# --------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 has_app_changes = !git.modified_files.grep(/app/).empty?
 has_spec_changes = !git.modified_files.grep(/spec/).empty?
 
@@ -10,7 +10,7 @@ has_spec_changes = !git.modified_files.grep(/spec/).empty?
 if has_app_changes && !has_spec_changes
   if Dir.exist?(spec)
     warn(
-      markdown <<=MESSAGE
+      markdown <<-MESSAGE
         There are code changes, but no corresponding tests.
         Please include tests if this PR introduces any modifications in behavior.
       MESSAGE
@@ -22,6 +22,19 @@ if has_app_changes && !has_spec_changes
     MARKDOWN
   end
 end
+
+# ------------------------------------------------------------------------------
+# Your pull request is too big
+# ------------------------------------------------------------------------------
+if git.lines_of_code > 500
+  warn(
+    markdown <<-MESSAGE
+      Your pull request is more than 500 LoC.
+      Please make sure you did not commit unnecessary changes, such as `node_modules`, `change logs`
+    MESSAGE
+    , :sticky => true)
+end
+
 
 # Sometimes it's a README fix, or something like that - which isn't relevant for
 # including in a project's CHANGELOG for example
