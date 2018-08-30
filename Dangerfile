@@ -9,12 +9,9 @@ has_spec_changes = !git.modified_files.grep(/spec/).empty?
 # ------------------------------------------------------------------------------
 if has_app_changes && !has_spec_changes
   if Dir.exist?(spec)
-    warn(
-      markdown <<-MESSAGE
-        There are code changes, but no corresponding tests.
-        Please include tests if this PR introduces any modifications in behavior.
-      MESSAGE
-      , :sticky => true)
+    warn("There are code changes, but no corresponding tests. "\
+         "Please include tests if this PR introduces any modifications in behavior.",
+         :sticky => true)
   else
     markdown <<-MARKDOWN
       Thanks for the PR! This project lacks automated tests, which makes reviewing and approving PRs somewhat difficult.
@@ -24,15 +21,12 @@ if has_app_changes && !has_spec_changes
 end
 
 # ------------------------------------------------------------------------------
-# Your pull request is too big
+# Your pull request is too big (more than 500 LoC)
 # ------------------------------------------------------------------------------
 if git.lines_of_code > 500
-  warn(
-    markdown <<-MESSAGE
-      Your pull request is more than 500 LoC.
-      Please make sure you did not commit unnecessary changes, such as `node_modules`, `change logs`
-    MESSAGE
-    , :sticky => true)
+  warn("Your pull request is more than 500 LoC."\
+       "Please make sure you did not commit unnecessary changes, such as node_modules, change logs.",
+       :sticky => true)
 end
 
 
