@@ -69,7 +69,6 @@ Please fix them.
     MARKDOWN
 
   warn(TEST_SKIPPED_MESSAGE, sticky: true)
-  puts github.pr_diff
 end
 
 
