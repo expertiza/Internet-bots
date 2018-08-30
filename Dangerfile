@@ -38,7 +38,7 @@ Please make sure that your contribution has not broken backwards compatibility o
 end
 
 # ------------------------------------------------------------------------------
-# Your pull request is too big (more than 500 LoC)
+# Your PR is too big (more than 500 LoC).
 # ------------------------------------------------------------------------------
 if git.lines_of_code > 500
   BIG_PR_MESSAGE = 
@@ -51,13 +51,26 @@ Please make sure you did not commit unnecessary changes, such as `node_modules`,
 end
 
 # ------------------------------------------------------------------------------
-# If a PR is a work in progress and it shouldn't be merged
+# If a PR is a work in progress and it shouldn't be merged.
 # ------------------------------------------------------------------------------
 if github.pr_title.include? "WIP" or github.pr_title.include? "wip"
   warn("This pull request is classed as Work in Progress", sticky: true)
 end
 
+# ------------------------------------------------------------------------------
+# The PR should not include skipped test cases.
+# ------------------------------------------------------------------------------
+if github.pr_diff.include? "xdescribe" or github.pr_diff.include? "xit"
+  TEST_SKIPPED_MESSAGE = 
+    markdown <<-MARKDOWN
+There are one or more skipped test cases in your pull request.
+Because we find `xdescribe` or `xit`.
+Please fix them.
+    MARKDOWN
 
+  warn(TEST_SKIPPED_MESSAGE, sticky: true)
+  puts github.pr_diff
+end
 
 
 
