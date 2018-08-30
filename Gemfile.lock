@@ -1,4 +1,21 @@
 GIT
+  remote: https://github.com/Winbobob/danger.git
+  revision: 9b90044321eced0805b5e9d4fa440d9df2518c19
+  specs:
+    danger (5.6.4)
+      claide (~> 1.0)
+      claide-plugins (>= 0.9.2)
+      colored2 (~> 3.1)
+      cork (~> 0.1)
+      faraday (~> 0.9)
+      faraday-http-cache (~> 1.0)
+      git (~> 1)
+      kramdown (~> 1.5)
+      no_proxy_fix
+      octokit (~> 4.7)
+      terminal-table (~> 1)
+
+GIT
   remote: https://github.com/expertiza/authlogic.git
   revision: d678b39a6d050a1804edc6ed16c025441a9a195b
   specs:
@@ -135,18 +152,6 @@ GEM
       tins (~> 1.6)
     crass (1.0.4)
     daemons (1.2.6)
-    danger (5.6.4)
-      claide (~> 1.0)
-      claide-plugins (>= 0.9.2)
-      colored2 (~> 3.1)
-      cork (~> 0.1)
-      faraday (~> 0.9)
-      faraday-http-cache (~> 1.0)
-      git (~> 1)
-      kramdown (~> 1.5)
-      no_proxy_fix
-      octokit (~> 4.7)
-      terminal-table (~> 1)
     database_cleaner (1.6.2)
     delayed_job (4.1.4)
       activesupport (>= 3.0, < 5.2)
@@ -578,7 +583,7 @@ DEPENDENCIES
   coffee-rails
   coveralls
   daemons
-  danger
+  danger!
   database_cleaner
   delayed_job_active_record
   dynamic_form
