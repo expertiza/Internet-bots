@@ -71,5 +71,9 @@ Please fix them.
   warn(TEST_SKIPPED_MESSAGE, sticky: true)
 end
 
-
-
+# ------------------------------------------------------------------------------
+# Most of time, the PR should not change README.md.
+# ------------------------------------------------------------------------------
+if git.modified_files.include? "README.md"
+  warn("You changed README file, please double check if it is necessary", sticky: true)
+end
