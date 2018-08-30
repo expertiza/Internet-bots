@@ -8,7 +8,7 @@ has_spec_changes = !git.modified_files.grep(/spec/).empty?
 # You've made changes to lib, but didn't write any tests?
 # ------------------------------------------------------------------------------
 if has_app_changes && !has_spec_changes
-  if Dir.exist?(spec)
+  if Dir.exist?('spec')
     warn("There are code changes, but no corresponding tests. "\
          "Please include tests if this PR introduces any modifications in behavior.",
          :sticky => true)
