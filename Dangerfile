@@ -15,15 +15,10 @@ if github.pr_author
 end
 
 # ------------------------------------------------------------------------------
-# Has any changes happened inside the actual library code?
+# You've made changes to lib, but didn't write any tests?
 # ------------------------------------------------------------------------------
 has_app_changes = !git.modified_files.grep(/app/).empty?
 has_spec_changes = !git.modified_files.grep(/spec/).empty?
-
-# ------------------------------------------------------------------------------
-# You've made changes to lib, but didn't write any tests?
-# ------------------------------------------------------------------------------
-
 
 if has_app_changes && !has_spec_changes
   if Dir.exist?('spec')
@@ -55,20 +50,14 @@ if git.lines_of_code > 500
   warn(BIG_PR_MESSAGE, sticky: true)
 end
 
+# ------------------------------------------------------------------------------
+# If a PR is a work in progress and it shouldn't be merged
+# ------------------------------------------------------------------------------
+if github.pr_title.include? "WIP" or github.pr_title.include? "wip"
+  warn("PR is classed as Work in Progress")
+end
 
-# Sometimes it's a README fix, or something like that - which isn't relevant for
-# including in a project's CHANGELOG for example
-declared_trivial = github.pr_title.include? "#trivial"
 
-# Make it more obvious that a PR is a work in progress and shouldn't be merged yet
-warn("PR is classed as Work in Progress") if github.pr_title.include? "WIP"
-
-# Warn when there is a big PR
-warn("Test warning") if git.lines_of_code > 1
-
-# Don't let testing shortcuts get into master by accident
-fail("fdescribe left in tests") if `grep -r fdescribe specs/ `.length > 1
-fail("fit left in tests") if `grep -r fit specs/ `.length > 1
 
 
 
