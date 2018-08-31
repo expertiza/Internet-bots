@@ -75,14 +75,14 @@ end
 # The PR should not include temp, tmp, cache file.
 # ------------------------------------------------------------------------------
 if git.modified_files.include? "temp" or
-   git.modified_files.include? "tmp" or
+   git.modified_files.include? "tmp"
    TEMP_FILE_MESSAGE =
    markdown <<-MARKDOWN
 You committed `temp`, `tmp` or `cache` file. 
 Please remove them.
    MARKDOWN
 
-  error(TEMP_FILE_MESSAGE, sticky: true)
+  fail(TEMP_FILE_MESSAGE, sticky: true)
 end
 
 # ------------------------------------------------------------------------------
@@ -104,7 +104,7 @@ end
 # ------------------------------------------------------------------------------
 # Most of time, the PR should not change README.md.
 # ------------------------------------------------------------------------------
-if git.modified_files.include? /*.md/
+unless git.modified_files.grep(/\.md/).empty?
   MARKDOWN_CHANGE_MESSAGE =
     markdown <<-MARKDOWN
 You changed MARKDOWN (`*.md`) documents, please double check if it is necessary.
@@ -139,14 +139,14 @@ if github.pr_diff.include? "puts" or
    github.pr_diff.include? "binding.pry" or
    github.pr_diff.include? "debugger;" or
    github.pr_diff.include? "console.log"
-   error("You are including debug code in your pull request, please remove them.", sticky: true)
+   fail("You are including debug code in your pull request, please remove them.", sticky: true)
 end
 
 # ------------------------------------------------------------------------------
 # The PR should not modifying *.yml or *.yml.example file.
 # ------------------------------------------------------------------------------
-if git.modified_files.include? /*.yml/
-  error("You should not change YAML (`*.yml`) or example (`*.yml.example`) files, please revert these changes.", sticky: true)
+unless git.modified_files.grep(/\.yml/).empty?
+  fail("You should not change YAML (`*.yml`) or example (`*.yml.example`) files, please revert these changes.", sticky: true)
 end
 
 # ------------------------------------------------------------------------------
@@ -159,8 +159,9 @@ end
 # ------------------------------------------------------------------------------
 # The PR should not modifying rails_helper.rb or spec_helper.rb file.
 # ------------------------------------------------------------------------------
-if git.modified_files.include? /*.yml/
-  error("You should not change `rails_helper.rb` or `spec_helper.rb` file, please revert these changes.", sticky: true)
+if git.modified_files.include? "rails_helper.rb" or
+   git.modified_files.include? "spec_helper.rb"
+  fail("You should not change `rails_helper.rb` or `spec_helper.rb` file, please revert these changes.", sticky: true)
 end
 
 # ------------------------------------------------------------------------------
