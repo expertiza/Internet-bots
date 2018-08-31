@@ -11,7 +11,7 @@ This repository is being automatically checked for code quality issues using `Co
 If you have any questions, please send email to <a href="mailto:expertiza-support@lists.ncsu.edu">expertiza-support@lists.ncsu.edu</a>.
     MARKDOWN
 
-  message(WELCOME_MESSAGE, sticky: true) 
+  message(WELCOME_MESSAGE) 
 end
 
 # ------------------------------------------------------------------------------
