@@ -1,7 +1,7 @@
 GIT
   remote: git://github.com/Winbobob/danger.git
-  revision: 065ab92849ff6c72d8477cddf4a94bfd56cc8e98
-  ref: 065ab92
+  revision: 423310f3bc9268262f75f34d593a80c5824675ef
+  ref: 423310f
   specs:
     danger (5.6.4)
       claide (~> 1.0)
