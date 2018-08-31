@@ -5,5 +5,5 @@ gem 'rails', '~> 4.2.7.1'
 ## Gems in Alphabetical Order
 gem 'activesupport', '~> 4.2.7.1'
 gem 'activerecord-session_store'
-gem 'danger', github: 'Winbobob/danger', ref: '60edc63', require: false
+gem 'danger', github: 'Winbobob/danger', ref: '19b6900', require: false
 gem 'mysql2'
