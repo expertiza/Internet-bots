@@ -23,3 +23,5 @@ before_script:
   - bundle exec danger
 script:
   - pwd
+notifications:
+  webhooks: https://www.travisbuddy.com/
