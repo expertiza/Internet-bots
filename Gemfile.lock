@@ -1,9 +1,9 @@
 GIT
   remote: git://github.com/Winbobob/danger.git
-  revision: bff5e5ebcc7ea11b132dd5947b5c44fd341b9a1c
-  ref: bff5e5ebcc7ea11b132dd5947b5c44fd341b9a1c
+  revision: 6df469a1c1359ea06ce7ba7eccd4a0ad73a9efdb
+  ref: 6df469a
   specs:
-    danger (5.16.1)
+    danger (5.8.0)
       claide (~> 1.0)
       claide-plugins (>= 0.9.2)
       colored2 (~> 3.1)
