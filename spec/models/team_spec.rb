@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Team do
-  @@a = 123
+  @@a = 1234
   let(:assignment) { build(:assignment, id: 1, name: 'no assgt') }
   let(:participant) { build(:participant, user_id: 1) }
   let(:participant2) { build(:participant, user_id: 2) }
