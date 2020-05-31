@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/Winbobob/danger.git
+  remote: https://github.com/Winbobob/danger.git
   revision: 6df469a1c1359ea06ce7ba7eccd4a0ad73a9efdb
   ref: 6df469a
   specs:
