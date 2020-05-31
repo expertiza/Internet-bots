@@ -29,8 +29,7 @@ end
 # ------------------------------------------------------------------------------
 # 0. Welcome message
 # ------------------------------------------------------------------------------
-unless CURRENT_MAINTAINERS.include? PR_AUTHOR
-  if PR_TITLE =~ /E[0-9]{4}/
+if PR_TITLE =~ /E[0-9]{4}/
     WELCOME_MESSAGE_COURSE_PROJECT =
       markdown <<-MARKDOWN
 Thanks for the pull request, and welcome! :tada: The Expertiza team is excited to review your changes, and you should hear from us soon.
@@ -43,7 +42,7 @@ If you have any questions, please send email to <a href="mailto:expertiza-suppor
       MARKDOWN
 
     message(WELCOME_MESSAGE_COURSE_PROJECT)
-  else
+else
     WELCOME_MESSAGE =
       markdown <<-MARKDOWN
 Thanks for the pull request, and welcome! :tada: The Expertiza team is excited to review your changes, and you should hear from us soon.
@@ -55,7 +54,6 @@ If you have any questions, please send email to <a href="mailto:expertiza-suppor
       MARKDOWN
 
     message(WELCOME_MESSAGE)
-  end
 end
 
 # ------------------------------------------------------------------------------
