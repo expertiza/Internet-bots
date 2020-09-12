@@ -4,7 +4,7 @@ gem 'rails', '~> 4.2.11.1'
 
 ## Gems in Alphabetical Order
 gem 'activesupport', '~> 4.2.11.1'
-gem 'danger', git: 'https://github.com/Winbobob/danger.git', ref: '470264ded77308439926262166e59592d76f4951', require: false
+gem 'danger', git: 'https://github.com/Winbobob/danger.git', ref: 'c847e13596133065a408e628ceb9ee750855766b', require: false
 gem 'mysql2'
 gem 'nokogiri', '~> 1.9.1'
 gem 'public_suffix', '~> 3.0.1'
